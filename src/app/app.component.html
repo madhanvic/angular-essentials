@@ -1,9 +1,9 @@
 <app-header />
 
 <main>
-  <ul id="usersdsfgsdfg">
-    <li>
-      <app-user />
+  <ul id="users">
+    <li *ngFor="let user of users">
+      <app-user [name]="user.name" [avatar]="user.avatar" />
     </li>
   </ul>
 </main>
