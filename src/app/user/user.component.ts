@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
@@ -11,7 +11,11 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input({ required: true  }) name!: string;
+  @Input({ alias: 'id', required: true }) userId!: string;
+  @Input({ required: true }) name!: string;
   @Input() avatar!: string;
-  onSelectUser() {}
+  @Output() select = new EventEmitter<string>();
+  onSelectUser() {
+    this.select.emit(this.userId);
+  }
 }
